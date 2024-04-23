@@ -1,11 +1,14 @@
 import express from "express";
 import bodyparser from "body-parser";
-import mysql from "mysql2"
+import mysql from "mysql2";
+import cors from "cors";
 const app = express();
 const PORT = 3002;
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
+
+app.use(cors());
 
 const db = mysql.createConnection({
       host: 'localhost',
@@ -15,6 +18,7 @@ const db = mysql.createConnection({
 })
 
 app.get("/",(req,res)=>{
+    // console.log("We've reached here");
     const q = "select * from books"
     db.query(q,(err,data)=>{
         if(err){
