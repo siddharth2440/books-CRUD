@@ -47,7 +47,7 @@ app.put("/update/:id",(req,res)=>{
             return res.json(err);
         }else{
             console.log(data);
-            return;
+            return res.json(data);
         }
     })
 })
